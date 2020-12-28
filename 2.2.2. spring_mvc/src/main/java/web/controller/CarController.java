@@ -18,6 +18,10 @@ public class CarController {
     @RequestMapping(method = RequestMethod.GET)
     public String printCars(@RequestParam(value = "count", required = false, defaultValue = "5") int count, ModelMap model) {
         model.addAttribute("cars", carService.carListOnService(count));
-        return "car";
+        if (count >= 6)
+            return "returnToCar";
+        else {
+            return "car";
+        }
     }
 }
